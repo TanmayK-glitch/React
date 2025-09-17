@@ -1,9 +1,7 @@
-import UserGreeting from "./ConditionalRendering.jsx"
+import Lists from "./Lists"
 
 function App(){
-  return (
-    <UserGreeting isLoggedin={true} name="Tanmay" />
-  );
+  return(<Lists />);
 }
 
 export default App
