@@ -1,4 +1,4 @@
-.cardContainer{
+.cardContainer {
   border: 1px solid black;
   border-radius: 10px;
   display: flex;
@@ -9,7 +9,7 @@
   text-align: center;
   background-color: black;
   color: white;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   box-shadow: 10px 10px 10px grey;
   max-width: 300px;
 }
