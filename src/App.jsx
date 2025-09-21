@@ -1,12 +1,11 @@
 // import Button from './Button.jsx';
-// import MyComponent from './myComponent.jsx';
-import Counter from './Counter.jsx';
+import MyComponent from './myComponent.jsx';
 
 function App() {
 
   return (
     <>
-      <Counter />
+      <MyComponent />
     </>
   );
 }
