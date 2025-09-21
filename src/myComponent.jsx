@@ -55,7 +55,7 @@ function myComponent() {
                 <p>Comment: {comment}</p>
             </div>
         </>
-    );s
+    );
 }
 
 export default myComponent
