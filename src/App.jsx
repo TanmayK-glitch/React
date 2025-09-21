@@ -1,11 +1,12 @@
 // import Button from './Button.jsx';
-import MyComponent from './myComponent.jsx';
+// import MyComponent from './myComponent.jsx';
+import ColorPicker from "./ColorPickerApp";
 
 function App() {
 
   return (
     <>
-      <MyComponent />
+      <ColorPicker />
     </>
   );
 }
