@@ -2,24 +2,26 @@ import { useState } from "react";
 
 // Practice Update Objects in State
 function Projects() {
-    const[details, setDetails] = useState({ name: "Tanmay", 
-                                            age: 19, 
-                                            city: "Pune" });
+    const [details, setDetails] = useState({
+        name: "Tanmay",
+        age: 19,
+        city: "Pune"
+    });
 
 
     const updateName = (e) => {
-        setDetails(d => Object.assign({}, d, {name: e.target.value}));
+        setDetails(d => Object.assign({}, d, { name: e.target.value }));
     }
 
     const updateAge = (e) => {
-        setDetails(d => Object.assign({}, d, {age: e.target.value}));
+        setDetails(d => Object.assign({}, d, { age: e.target.value }));
     }
 
     const updateCity = (e) => {
-        setDetails(d => Object.assign({}, d, {city: e.target.value}));
+        setDetails(d => Object.assign({}, d, { city: e.target.value }));
     }
-    
-    
+
+
     return (
         <>
             <div>
