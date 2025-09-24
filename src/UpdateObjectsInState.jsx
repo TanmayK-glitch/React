@@ -14,11 +14,11 @@ function updateObjects() {
     }
 
     const updateCarName = (e) => {
-        setCar(c => [...c, {name: e.target.value}]);
+        setCar(c => [...c, { name: e.target.value }]);
     }
 
     const updateCarManu = (e) => {
-        setCar(c => [...c, {manu: e.target.value}]);
+        setCar(c => [...c, { manu: e.target.value }]);
     }
 
     const updateQuantity = (q) => {

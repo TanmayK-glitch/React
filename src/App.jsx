@@ -3,13 +3,14 @@
 // import ColorPicker from "./ColorPickerApp";
 // import UpdateObjects from "./UpdateObjectsInState";
 // import Projects from "./PracticeProjects";
-import UpdateArrays from "./UpdateArrays";
+// import UpdateArrays from "./UpdateArrays";
+import Demo from "./Demo";
 
 function App() {
 
   return (
     <>
-      <UpdateArrays />
+      <Demo />
     </>
   );
 }
