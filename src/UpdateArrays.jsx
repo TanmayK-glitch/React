@@ -47,8 +47,7 @@ function UpdateArraysofObject() {
     const [model, setModel] = useState("");
 
     const addCar = () => {
-        // const addBtn = document.getElementById('addBtn');
-        const newCars = {year: year, manu: manu, model: model};
+        const newCars = { year: year, manu: manu, model: model };
         setCar(f => [...f, newCars]);
         // clearInputs();
     }
@@ -80,8 +79,8 @@ function UpdateArraysofObject() {
             <div>
                 <h2>List Of Cars</h2>
                 <ul>
-                        {car.map((cars, index) => <li key={index} onClick={() => removeCar(index)}>
-                            {cars.year} {cars.manu} {cars.model}
+                    {car.map((cars, index) => <li key={index} onClick={() => removeCar(index)}>
+                        {cars.year} {cars.manu} {cars.model}
                     </li>)}
                 </ul>
                 <input type="number" value={year} onChange={addYear} id="changeYear"></input><br></br><br></br>

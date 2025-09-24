@@ -1,28 +1,29 @@
 import React, { use, useState } from "react";
 function updateObjects() {
 
-    const [car, setCar] = useState({year: 2024,
-                                    name: "BMW M4 Comp",
-                                    manu: "BMW"
+    const [car, setCar] = useState({
+        year: 2024,
+        name: "BMW M4 Comp",
+        manu: "BMW"
     });
 
     const [quantity, setQuantity] = useState(0);
 
-   const updateCarYear = (e) => {
-    setCar(c => Object.assign({}, c, {year: e.target.value}));
-   }
+    const updateCarYear = (e) => {
+        setCar(c => [...c, { year: e.target.value }]);
+    }
 
-   const updateCarName = (e) => {
-    setCar(c => Object.assign({}, c, {name: e.target.value}));
-   }
+    const updateCarName = (e) => {
+        setCar(c => [...c, {name: e.target.value}]);
+    }
 
-   const updateCarManu = (e) => {
-    setCar(c => Object.assign({}, c, {manu: e.target.value}));
-   }
+    const updateCarManu = (e) => {
+        setCar(c => [...c, {manu: e.target.value}]);
+    }
 
-   const updateQuantity = (q) => {
-    setQuantity(q => q + 1);
-   }
+    const updateQuantity = (q) => {
+        setQuantity(q => q + 1);
+    }
 
     return (
         <>
