@@ -3,11 +3,15 @@ import { useState } from "react";
 function ToDoApp() {
 
     const [list, setList] = useState(["Fuck Spohie Rain", "Get Pegged by GF"]);
-    const [newList, setNewList] = useState("");
     const addList = (e) => {
-        const newList = document.getElementById("inputPlace").value;
+        const inputValue = document.getElementById("inputPlace").value.trim();
 
-        setNewList(prev => ([...prev, newList]));
+        if (inputValue === "") {
+            return;
+        }
+
+        document.getElementById("inputPlace").value = "";
+        setList(prev => [...prev, inputValue]);
     }
 
     const removeList = (index) => {
@@ -16,17 +20,21 @@ function ToDoApp() {
 
     return (
         <>
-            <div>
+            <div className="todo-app">
                 <h1>To Do App</h1>
                 <h2>Tasks To Complete:</h2>
-                <ul>
-                    {list.map((item, index) => <li key={index}>{item} <button id="removeBtn" onClick={() => removeList(index)}>Remove</button></li>)}
+                <ul className="todo-list">
+                    {list.map((item, index) => (
+                        <li key={index} className="todo-item">
+                            {item}
+                            <button onClick={() => removeList(index)}>Remove</button>
+                        </li>
+                    ))}
                 </ul>
-                <input type="text" id="inputPlace" placeholder="Enter List To Add"></input><br></br><br></br>
-                <button id="addBtn" onClick={addList}>Add List</button>
-                <h2>Completed Tasks: </h2>
-                <ul>
-                </ul>
+                <div className="todo-input">
+                    <input type="text" id="inputPlace" placeholder="Enter List To Add"></input>
+                    <button onClick={addList}>Add List</button>
+                </div>
             </div>
         </>
     );
