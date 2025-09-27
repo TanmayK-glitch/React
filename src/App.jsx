@@ -5,15 +5,16 @@
 // import Projects from "./PracticeProjects";
 // import UpdateArrays from "./UpdateArrays";
 // import Demo from "./Demo";
-import DigitalClock from "./DigitalClock";
+// import DigitalClock from "./DigitalClock";
 // import ToDoApp from "./ToDoList";
 // import UseEffect from "./useEffect()_Hook";
+import ComponentA from "./ComponentA";
 
 function App() {
 
   return (
     <>
-      <DigitalClock />
+      <ComponentA />
     </>
   );
 }
