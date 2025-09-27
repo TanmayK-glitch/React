@@ -8,13 +8,14 @@
 // import DigitalClock from "./DigitalClock";
 // import ToDoApp from "./ToDoList";
 // import UseEffect from "./useEffect()_Hook";
-import ComponentA from "./ComponentA";
+// import ComponentA from "./ComponentA";
+import UseState from "./useState";
 
 function App() {
 
   return (
     <>
-      <ComponentA />
+      <UseState />
     </>
   );
 }
