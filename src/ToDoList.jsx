@@ -32,7 +32,7 @@ function ToDoApp() {
                     ))}
                 </ul>
                 <div className="todo-input">
-                    <input type="text" id="inputPlace" placeholder="Enter List To Add"></input>
+                    <input type="text" id="inputPlace" placeholder="Enter List To Add" onChange={list}></input>
                     <button onClick={addList}>Add List</button>
                 </div>
             </div>

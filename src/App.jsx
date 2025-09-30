@@ -9,13 +9,15 @@
 // import ToDoApp from "./ToDoList";
 // import UseEffect from "./useEffect()_Hook";
 // import ComponentA from "./ComponentA";
-import UseState from "./useState";
+// import UseState from "./useState";
+// import StopWatch from "./StopWatch.jsx";
+import Project1 from "./Project1";
 
 function App() {
 
   return (
     <>
-      <UseState />
+      <Project1 />
     </>
   );
 }
