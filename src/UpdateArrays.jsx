@@ -46,10 +46,14 @@ function UpdateArraysofObject() {
     const [manu, setManu] = useState("");
     const [model, setModel] = useState("");
 
-    const addCar = () => {
+    // const addCar = () => {
+    //     const newCars = { year: year, manu: manu, model: model };
+    //     setCar(f => [...f, newCars]);
+    //     // clearInputs();
+    // }
+    function addCar() {
         const newCars = { year: year, manu: manu, model: model };
         setCar(f => [...f, newCars]);
-        // clearInputs();
     }
 
     const removeCar = (index) => {

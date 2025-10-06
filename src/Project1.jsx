@@ -1,33 +1,35 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function Project1() {
-    const input = document.querySelector('#inputValue');
-    const addButton = document.querySelector('.addBtn');
-
     const [list, setList] = useState(["Buy Street Triple RS"]);
+    const [inputValue, setInputValue] = useState("");
+    const prevListLength = useRef(list.length);
 
-    function addTask(e) {
-        const newValue = document.getElementById('inputValue').value.trim();
-
-        if (newValue === "") {
+    function addTask() {
+        if (inputValue.trim() === "") {
             return;
         }
-
-        document.getElementById('inputValue').value = "";
-        setList(p => [...p, newValue]);
+        setList(prev => [...prev, inputValue.trim()]);
+        setInputValue("");
     }
 
     function removeTask(index) {
         setList(prevList => prevList.filter((_, i) => i !== index));
     }
 
-    input?.addEventListener('keydown', (e) => {
-        if (e.key == 'Enter') {
+    function handleKeyPress(e) {
+        if (e.key === 'Enter') {
             addTask();
         }
-    });
+    }
 
-    // addButton?.addEventListener('click', addTask);
+    // useEffect that runs only when items are removed
+    useEffect(() => {
+        if (list.length < prevListLength.current) {
+            console.log("Task removed! New list:", list);
+        }
+        prevListLength.current = list.length;
+    }, [list]);
 
     return (
         <>
@@ -40,7 +42,13 @@ function Project1() {
                         ))}
                     </ul>
                 </div>
-                <input type="text" placeholder="Enter Tasks To Add" id="inputValue" onChange={list}></input>
+                <input
+                    type="text"
+                    placeholder="Enter Tasks To Add"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                    onKeyDown={handleKeyPress}
+                />
                 <button className="addBtn" onClick={addTask}>Add Button</button>
             </div>
         </>
