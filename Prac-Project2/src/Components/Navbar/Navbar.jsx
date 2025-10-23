@@ -1,6 +1,43 @@
-import React from "react";
+import React, { useContext } from "react";
+import { coinContext } from "../../Context/CoinContext";
 
 function Navbar() {
+
+    const { setCurrency } = useContext(coinContext);
+
+    const currencyhandler = (e) => {
+        switch (e.target.value) {
+            case "usd": {
+                setCurrency({
+                    name: "usd",
+                    symbol: "$"
+                });
+            }
+            case "inr": {
+                setCurrency({
+                    name: "inr",
+                    symbol: "₹"
+                });
+                break;
+            }
+            case "eur": {
+                setCurrency({
+                    name: "eur",
+                    symbol: "€"
+                });
+                break;
+            }
+            default: {
+                setCurrency({
+                    name: "usd",
+                    symbol: "$"
+                });
+                break;
+            }
+
+        }
+    }
+
     return (
         <>
             <div className="flex items-center justify-between p-2">
@@ -11,7 +48,7 @@ function Navbar() {
                     <li>Pricing</li>
                     <li>Blog</li>
                 </ul>
-                <select className="sm: hidden">
+                <select className="sm: hidden" onChange={currencyhandler}>
                     <option value={`usd`}>USD</option>
                     <option value={`inr`}>INR</option>
                     <option value={`euro`}>EURO</option>
