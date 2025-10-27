@@ -1,4 +1,20 @@
+import { useContext, useEffect, useState } from "react";
+import { coinContext } from "../../Context/CoinContext";
+
 function Home() {
+
+    const context = useContext(coinContext);
+    const {allCoin, currency, loading} = context || { allCoin: [], currency: { symbol: '$' }, loading: false };
+    const [displayCoin, setDisplayCoin] = useState([]);
+    
+    if (!context) {
+        return <div>Loading...</div>;
+    }
+
+    useEffect(() => {
+        setDisplayCoin(allCoin);
+    }, [allCoin])
+
     return (
         <>
             {/* Main Home Div */}
@@ -44,6 +60,25 @@ function Home() {
                          <p className="text-right">Market Cap</p>
                      </div>
                     {/* Table-Layout */}
+                    <div>
+                        {loading ? (
+                            <div className="text-center p-4">Loading coins...</div>
+                        ) : displayCoin && displayCoin.length > 0 ? (
+                            displayCoin.slice(0, 10).map((item, index) => (
+                                <div key={index} className="grid grid-cols-5 text-sm gap-3 font-medium bg-white border border-gray-200 rounded-lg shadow-sm p-3 mt-2">
+                                    <p>{item.market_cap_rank || 'N/A'}</p>
+                                    <p className="text-left">{item.name || 'N/A'}</p>
+                                    <p>{currency.symbol}{item.current_price?.toLocaleString() || 'N/A'}</p>
+                                    <p className={`text-left ${item.price_change_percentage_24h > 0 ? 'text-green-600' : 'text-red-600'}`}>
+                                        {item.price_change_percentage_24h ? item.price_change_percentage_24h.toFixed(2) + '%' : 'N/A'}
+                                    </p>
+                                    <p className="text-right">{item.market_cap?.toLocaleString() || 'N/A'}</p>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="text-center p-4">No coins available</div>
+                        )}
+                    </div>
                 </div>
                 {/* Crypto-Table */}
             </div>

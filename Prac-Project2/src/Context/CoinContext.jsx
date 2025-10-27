@@ -1,38 +1,50 @@
-const { createContext, useState, useEffect } = require("react")
+import { createContext, useState, useEffect } from "react";
 
 export const coinContext = createContext();
 
-const coinContextPorvider = (props) => {
+const CoinContextProvider = (props) => {
 
     const [allCoin, setAllCoin] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [currency, setCurrency] = useState({
         name: "usd",
         symbol: "$"
     });
 
     const fetchAllCoin = async () => {
-        const url = `https://pro-api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&ids=bitcoin&names=Bitcoin&symbols=btc&category=layer-1&price_change_percentage=1h`;
-const options = {
-  method: 'GET',
-  headers: {'x-cg-pro-api-key': 'CG-WWyzV1h6yjxHRq5yQhhN9EH1'},
-  body: undefined
-};
-
-try {
-  const response = await fetch(url, options);
-  const data = await response.json();
-  setAllCoin(data);
-} catch (error) {
-  console.error(error);
-}
+        setLoading(true);
+        const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency.name}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`;
+        
+        try {
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (Array.isArray(data)) {
+                setAllCoin(data);
+            } else {
+                console.error('API returned non-array data:', data);
+                setAllCoin([]);
+            }
+        } catch (error) {
+            console.error('Error fetching coins:', error);
+            setAllCoin([]);
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
         fetchAllCoin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency])
 
     const contextValue = {
-        allCoin, currency, setCurrency
+        allCoin, currency, setCurrency, loading
     }
 
     return(
@@ -42,4 +54,4 @@ try {
     )
 }
 
-export default coinContextPorvider;
+export default CoinContextProvider;

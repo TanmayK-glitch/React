@@ -3,7 +3,12 @@ import { coinContext } from "../../Context/CoinContext";
 
 function Navbar() {
 
-    const { setCurrency } = useContext(coinContext);
+    const context = useContext(coinContext);
+    const { setCurrency } = context || {};
+    
+    if (!context) {
+        return <div>Loading...</div>;
+    }
 
     const currencyhandler = (e) => {
         switch (e.target.value) {
@@ -12,6 +17,7 @@ function Navbar() {
                     name: "usd",
                     symbol: "$"
                 });
+                break;
             }
             case "inr": {
                 setCurrency({
@@ -48,10 +54,10 @@ function Navbar() {
                     <li>Pricing</li>
                     <li>Blog</li>
                 </ul>
-                <select className="sm: hidden" onChange={currencyhandler}>
-                    <option value={`usd`}>USD</option>
-                    <option value={`inr`}>INR</option>
-                    <option value={`euro`}>EURO</option>
+                <select onChange={currencyhandler}>
+                    <option value="usd">USD</option>
+                    <option value="inr">INR</option>
+                    <option value="eur">EURO</option>
                 </select>
 
 
