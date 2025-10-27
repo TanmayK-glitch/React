@@ -2,7 +2,11 @@ How exactly we have to make the REST API
 
 1. Its a JSON API
  - GET /users - List all users : We can also render this using HTML / React Docs. 
+
  - GET /users/1 - List the user with ID 1
+    To access the user with the ID 1, we have to get that ID dynamically.
+    GET /api/users/:id - this ":" represents dynamic access, it's a variable
+
  - GET /users/2 - List the user with ID 2
 
 2. POST Route
