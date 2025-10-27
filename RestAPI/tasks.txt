@@ -1,0 +1,15 @@
+How exactly we have to make the REST API
+
+1. Its a JSON API
+ - GET /users - List all users : We can also render this using HTML / React Docs. 
+ - GET /users/1 - List the user with ID 1
+ - GET /users/2 - List the user with ID 2
+
+2. POST Route
+ - POST /users - Create a new user
+
+3. PATCH Route
+ - PATCH /users/1 - Edit the user with ID 1
+
+4. DELETE Route
+ - DELETE /users/1 - Delete the user with ID 1
