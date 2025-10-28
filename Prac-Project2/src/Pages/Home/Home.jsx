@@ -6,7 +6,23 @@ function Home() {
     const context = useContext(coinContext);
     const {allCoin, currency, loading} = context || { allCoin: [], currency: { symbol: '$' }, loading: false };
     const [displayCoin, setDisplayCoin] = useState([]);
-    
+    const [input, setInput] = useState('');
+
+    const inputHandler = (e) => {
+        setInput(e.target.value);
+        if(e.target.value === ""){
+            setDisplayCoin(allCoin);
+        }
+    }
+
+    const searchHandler = async (e) => {
+        e.preventDefault();
+        const coins = await allCoin.filter((item) => {
+            return item.name.toLowerCase().includes(input.toLowerCase());
+        });
+        setDisplayCoin(coins);
+    }
+
     if (!context) {
         return <div>Loading...</div>;
     }
@@ -29,14 +45,27 @@ function Home() {
                         Stay informed with the latest crypto news and insights — all in one simple app.
                         Your gateway to the live world of crypto starts here.
                     </p>
-                    <form className="flex items-center justify-between mt-8 p-3 bg-white border border-gray-200 rounded-2xl shadow-lg max-w-2xl mx-auto">
+                    <form   onSubmit={searchHandler}
+                            className="flex items-center justify-between mt-8 p-3 bg-white border border-gray-200 rounded-2xl shadow-lg max-w-2xl mx-auto">
                         <div className="flex items-center flex-1">
                             <i className="ri-search-line text-gray-400 text-xl mr-3"></i>
                             <input
                                 type="text"
+                                onChange={inputHandler}
+                                value={input}
+                                list="coinList"
                                 placeholder="Search Bitcoin, Ethereum, Dogecoin..."
                                 className="flex-1 outline-none text-gray-700 placeholder-gray-400 bg-transparent"
+                                required
                             />
+                            <datalist id="coinList">
+                                {
+                                    allCoin.map((item, index) => (<option key={index} value={item.name}/>))
+                                }
+                            </datalist>
+
+
+
                         </div>
                         <button
                             type="submit"
